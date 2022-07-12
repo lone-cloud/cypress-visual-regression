@@ -1,9 +1,5 @@
 # Cypress Visual Regression
 
-[![npm](https://img.shields.io/npm/v/cypress-visual-regression)](https://www.npmjs.com/package/cypress-visual-regression)
-
-[![github actions](https://github.com/mjhea0/cypress-visual-regression/workflows/Continuous%20Integration/badge.svg)](https://github.com/mjhea0/cypress-visual-regression/actions)
-
 
 Module for adding visual regression testing to [Cypress](https://www.cypress.io/).
 
@@ -12,7 +8,7 @@ Module for adding visual regression testing to [Cypress](https://www.cypress.io/
 Install:
 
 ```sh
-$ npm install cypress-visual-regression
+$ npm install @lone-cloud/cypress-visual-regression
 ```
 
 Add the following config to your *cypress.json* file:
@@ -27,7 +23,7 @@ Add the following config to your *cypress.json* file:
 Add the plugin to *cypress/plugins/index.js*:
 
 ```javascript
-const getCompareSnapshotsPlugin = require('cypress-visual-regression/dist/plugin');
+const getCompareSnapshotsPlugin = require('@lone-cloud/cypress-visual-regression/dist/plugin');
 
 module.exports = (on, config) => {
   getCompareSnapshotsPlugin(on, config);
@@ -37,7 +33,7 @@ module.exports = (on, config) => {
 Add the command to *cypress/support/commands.js*:
 
 ```javascript
-const compareSnapshotCommand = require('cypress-visual-regression/dist/command');
+const compareSnapshotCommand = require('@lone-cloud/cypress-visual-regression/dist/command');
 
 compareSnapshotCommand();
 ```
@@ -56,7 +52,7 @@ If you're using TypeScript, use files with a `.ts` extension, as follows:
 
 ```ts
 import type Cypress from 'cypress';
-import getCompareSnapshotsPlugin from 'cypress-visual-regression/dist/plugin';
+import getCompareSnapshotsPlugin from '@lone-cloud/cypress-visual-regression/dist/plugin';
 
 export default function configurePlugins(
   on: Cypress.PluginEvents,
@@ -69,7 +65,7 @@ export default function configurePlugins(
 *cypress/support/commands.ts*
 
 ```ts
-import compareSnapshotCommand from 'cypress-visual-regression/dist/command';
+import compareSnapshotCommand from '@lone-cloud/cypress-visual-regression/dist/command';
 
 compareSnapshotCommand();
 ```
@@ -81,7 +77,7 @@ compareSnapshotCommand();
   "compilerOptions": {
     "types": [
       "cypress",
-      "cypress-visual-regression"
+      "@lone-cloud/cypress-visual-regression"
     ]
   }
 }
@@ -105,7 +101,7 @@ For more info on how to use TypeScript with Cypress, please refer to [this docum
 You can also pass default [arguments](https://docs.cypress.io/api/cypress-api/screenshot-api.html#Arguments) to `compareSnapshotCommand()`:
 
 ```javascript
-const compareSnapshotCommand = require('cypress-visual-regression/dist/command');
+const compareSnapshotCommand = require('@lone-cloud/cypress-visual-regression/dist/command');
 
 compareSnapshotCommand({
   capture: 'fullPage'
@@ -241,12 +237,12 @@ module.exports = beforeCompareSnapshotCommand;
 ```
 You may then use this function like below:
 ```js
-const compareSnapshotCommand = require("cypress-visual-regression/dist/command");
+const compareSnapshotCommand = require("@lone-cloud/cypress-visual-regression/dist/command");
 const beforeCompareSnapshotCommand = require("./commands/beforeCompareSnapshots");
 compareSnapshotCommand({
   errorThreshold: 0.1
 });
-// add a before hook to compareSnapshot (this must be called AFTER compareSnapshotCommand() so the command can be overriden)
+// add a before hook to compareSnapshot (this must be called AFTER compareSnapshotCommand() so the command can be overridden)
 beforeCompareSnapshotCommand(
   ".chromatic-ignore,[data-chromatic='ignore']",
   "._app-content"
